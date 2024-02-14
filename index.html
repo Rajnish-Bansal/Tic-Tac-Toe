@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel = "stylesheet" href= "style.css">
+</head>
+<body>
+    
+<div class="container">
+    <div class="game-container">
+        <h2>Welcome to Tic Tac Toe</h2>
+        <table class="mobile-scorecard">
+            <tr class = "tr1">
+                <th style="width: 21%; height: 2%;" class="th1">Name</th>
+                <th style="width: 20%; height: 2%;" class="win">Win <br> <span class= "score">( 2 points )</span></th>
+                <th style="width: 18%; height: 2%;" class="draw">Draw <br> <span class= "score">( 1 point ) </span></th>
+                <th style="width: 18%; height: 2%;" class="lose">Lose <br> <span class= "score">( 0 point )</span></th>
+                <th style="width: 25%; height: 5%;" >Total Score</th>
+            </tr>
+            <tr class = "tr2">
+                <td id = 'playerx'>Player X</td>
+                <td id ="mx_won">0</td>
+                <td id ="mx_draw">0</td>
+                <td id ="mx_lose">0</td>
+                <td id = "totalscore-mx">0</td>
+            </tr>
+            <tr class = "tr3">
+                <td class = 'playero'>Player O</td>
+                <td id ="mo_won">0</td>
+                <td id ="mo_draw">0</td>
+                <td id ="mo_lose">0</td>
+                <td id ="totalscore-mo">0</td>
+            </tr>
+        </table>
+    
+        <div class="turn">Turn for : <span id="player"> &nbsp </span></div>
+
+        <div class="board">
+            <div class="line1">
+                <div class="grid1" id = "cell" ></div>
+                <div class="grid2" id = "cell" ></div>
+                <div class="grid3" id = "cell" ></div>
+            </div>
+            <div class="line2">
+                <div class="grid4" id = "cell" ></div>
+                <div class="grid5" id = "cell" ></div>
+                <div class="grid6" id = "cell" ></div>
+            </div>
+            <div class="line2">
+                <div class="grid7" id = "cell" ></div>
+                <div class="grid8" id = "cell" ></div>
+                <div class="grid9" id = "cell" ></div>
+            </div>
+        </div>
+
+        <div class="mbutton_div">
+            <button id="mbutton" onclick="newGame()">New Game</button>
+            <button id="mbutton" onclick="resetGame()">Play Again</button>
+        </div>
+
+    </div>
+    <div class="details-container">
+        <h1>Welcome to Tic Tac Toe</h1>
+        <table>
+            <tr class = "tr1">
+                <th class="th1">Name</th>
+                <th class="win">Win <br>( 2 points )</th>
+                <th class="draw">Draw <br>( 1 point )</th>
+                <th class = "lose">Lose <br>( 0 point )</th>
+                <th class="th4">Total Score</th>
+            </tr>
+            <tr>
+                <td id = 'playerx'>Player X</td>
+                <td id ="x_won">0</td>
+                <td id ="x_draw">0</td>
+                <td id ="x_lose">0</td>
+                <td id = "totalscore-x">0</td>
+            </tr>
+            <tr class = "tr3">
+                <td class = 'playero'>Player O</td>
+                <td id ="o_won">0</td>
+                <td id ="o_draw">0</td>
+                <td id ="o_lose">0</td>
+                <td id ="totalscore-o">0</td>
+            </tr>
+        </table>
+        <div class="win-container">
+            <div class="result">
+                <div class="heading">Result</div>
+                <div id="winner"></div>
+            </div>
+            <div class="gif">
+                <!-- <iframe src="https://giphy.com/embed/zyJBY5UxZb0AL1pCtE" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
+                <iframe id = "gif1" src="https://giphy.com/embed/zyJBY5UxZb0AL1pCtE" width="100%" height="100%" frameBorder="0"></iframe>
+                <iframe id = "gif2" src="https://giphy.com/embed/jtirFYtVwG5a0o1t9o" width="100%" height="100%" frameBorder="0"></iframe>
+                <iframe id = "gif3" src="https://giphy.com/embed/4KssdwPA53nQv8mh4C" width="100%" height="100%" frameBorder="0" ></iframe>
+            </div>
+            </div>
+        <div class="button_div">
+        <button id="button" onclick="resetGame()">Play Again</button>
+        <button id="button" onclick="newGame()">New Game</button>
+        </div>
+</div>
+<script src="js.js"></script>
+</body>
+</html>

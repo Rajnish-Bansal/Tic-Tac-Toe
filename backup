@@ -1,0 +1,198 @@
+let resetButton = document.getElementById("button"); 
+const cells = Array.from(document.querySelectorAll("#cell"));
+let currentPlayer = "X";
+
+document.getElementById('player').innerHTML = 'Player ' + currentPlayer;
+let gameOver = false;
+// let changeTurn = true ; 
+
+// function to switch players
+function changeTurn(){
+         if(currentPlayer == 'X'){
+            return currentPlayer = "O";
+        }
+        else{
+            currentPlayer="X";
+        }
+    }
+
+//add eventlistener to cells
+for(let i in cells){
+        cells[i].addEventListener('click', () =>{
+            play(cells[i]);
+        })
+}
+
+//function to switch players and end game 
+function play(box){
+    if(gameOver == false){
+        if(box.innerHTML==''){
+            box.innerText = currentPlayer;
+                checkWin();
+                changeTurn();    
+                document.getElementById('player').innerHTML = "Player" + ' ' + currentPlayer;
+        }
+        else{
+            alert('already marked')
+        }       
+    }
+}
+
+//initialising reset function
+function resetGame(){
+    for(let k in cells){
+        cells[k].innerText="";
+    }
+    document.getElementById('player').innerHTML = "Player" +' ' + currentPlayer ;
+    document.getElementById('winner').innerHTML = "" ;
+    document.getElementById('gif1').style.display = 'block';
+    document.getElementById('gif2').style.display = 'none' ;
+    document.getElementById('gif3').style.display = 'none' ;
+    // changeTurn()
+    gameOver = false;
+}
+
+// resetButton.addEventListener('click', () => {
+//     resetGame();
+// })
+
+function checkWin() {
+    const winCombos = [    
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    const winCombos2 = [    
+        [0, 1, 2, 3, 6],
+        [0, 1, 2, 4, 7],
+        [0, 1, 2, 5, 8],
+        [3, 4, 5, 0, 6],
+        [3, 4, 5, 1, 7],
+        [3, 4, 5, 2, 8],
+        [6, 7, 8, 0, 3],
+        [6, 7, 8, 1, 4],
+        [6, 7, 8, 2, 5]
+    ];
+  
+    let winner = '';
+
+    for (let i = 0; i < winCombos.length; i++) {
+      const [a, b, c] = winCombos[i];
+      if (cells[a].innerText && cells[a].innerText === cells[b].innerText && cells[b].innerText === cells[c].innerText){
+        winner = currentPlayer;
+      }
+    }
+  
+    for (let i = 0; i < winCombos2.length; i++) {
+      const [a, b, c, d, e] = winCombos2[i];
+      if (cells[a].innerText && cells[a].innerText === cells[b].innerText && cells[b].innerText === cells[c].innerText && cells[c].innerText === cells[d].innerText && cells[d].innerText === cells[e].innerText){
+        winner = currentPlayer;
+      }
+    }
+  
+    if (winner) {
+      document.getElementById("winner").innerHTML = "Winner is Player " + winner ;
+    //   changeTurn === false ;
+      document.getElementById("player").innerHTML = "Game Over";
+      document.getElementById("gif1").style.display = "none";
+      document.getElementById("gif2").style.display = "block";
+      document.getElementById("gif3").style.display = "none";
+      gameOver = true;
+      setTimeout(function(){alert('Game Over')}, 500)
+    } 
+    else if (cells[0].innerText && cells[1].innerText && cells[2].innerText && cells[3].innerText && cells[4].innerText && cells[5].innerText && cells[6].innerText && cells[7].innerText && cells[8].innerText){
+      document.getElementById("winner").innerHTML = "It`s a tie";
+      document.getElementById("player").innerHTML = "Game Over";
+      document.getElementById("gif1").style.display = "none";
+      document.getElementById("gif2").style.display = "none";
+      document.getElementById("gif3").style.display = "block";
+      gameOver = true;
+    }
+  }
+  
+
+
+
+//checking win condition
+// function checkWin(){
+//   const winCombos = [
+//     [0, 1, 2],
+//     [3, 4, 5],
+//     [6, 7, 8],
+
+//     [0, 3, 6],
+//     [1, 4, 7],
+//     [2, 5, 8],
+//     [0, 4, 8],
+//     [2, 4, 6],
+//   ];
+
+//   const winCombos2 = [
+//     [0, 1, 2, 3, 6],
+//     [0, 1, 2, 4, 7],
+//     [0, 1, 2, 5, 8],
+
+//     [3, 4, 5, 0, 6],
+//     [3, 4, 5, 1, 7],
+//     [3, 4, 5, 2, 8],
+    
+//     [6, 7, 8, 0, 3],
+//     [6, 7, 8, 1, 4],
+//     [6, 7, 8, 2, 5]
+//   ]
+
+//   for(let j = 0; j< winCombos.length; j++){
+//     const [x, y, z,] = winCombos[j];// [0, 1, 2]
+//     if (cells[x].innerText && cells[x].innerText === cells[y].innerText && cells[y].innerText === cells[z].innerText) {
+//         document.getElementById('winner').innerHTML = "Winner is Player" + ' '+ currentPlayer;
+//         document.getElementById('gif1').style.display = 'none' ;
+//         document.getElementById('gif2').style.display = 'block' ;
+//         document.getElementById('gif3').style.display = 'none' ;
+//         // changeTurn = false
+//         document.getElementById('player').innerHTML = "Game Over" ;
+//         gameOver = true;
+//       } 
+//     }
+    
+//     for(let m=0; m<winCombos2.length; m++){
+//         const [a, b, c, d, e] = winCombos[m];
+//         if (cells[a].innerText && cells[a].innerText === cells[b].innerText && cells[b].innerText === cells[c].innerText && cells[c].innerText === cells[d].innerText && cells[d].innerText === cells[e].innerText) {
+//             document.getElementById('winner').innerHTML = "Winner is Player" + ' '+ currentPlayer;
+//             document.getElementById('gif1').style.display = 'none' ;
+//             document.getElementById('gif2').style.display = 'block' ;
+//             document.getElementById('gif3').style.display = 'none' ;
+//             // changeTurn = false
+//             document.getElementById('player').innerHTML = "Game Over" ;
+//             gameOver = true;
+//           }
+
+//         else if(cells[0].innerText && cells[1].innerText && cells[2].innerText && cells[3].innerText && cells[4].innerText && cells[5].innerText && cells[6].innerText && cells[7].innerText && cells[8].innerText){
+//             document.getElementById('winner').innerHTML = "It`s a tie";
+//             document.getElementById('gif1').style.display = 'none' ;
+//             document.getElementById('gif2').style.display = 'none' ;
+//             document.getElementById('gif3').style.display = 'block' ;
+//             // changeTurn = false
+//             document.getElementById('player').innerHTML = "Game Over" ;
+//             gameOver = true;
+//         }
+//     }
+// }
+
+// for(let m=0; m<winCombos2.length; m++){
+//     const [a, b, c, d, e] = winCombos[m];
+//     if (cells[a].innerText && cells[a].innerText === cells[b].innerText && cells[b].innerText === cells[c].innerText && cells[c].innerText === cells[d].innerText && cells[d].innerText === cells[e].innerText) {
+//         document.getElementById('winner').innerHTML = "Winner is Player" + ' '+ currentPlayer;
+//         document.getElementById('gif1').style.display = 'none' ;
+//         document.getElementById('gif2').style.display = 'block' ;
+//         document.getElementById('gif3').style.display = 'none' ;
+//         // changeTurn = false
+//         document.getElementById('player').innerHTML = "Game Over" ;
+//         gameOver = true;
+//       }
+//     }
